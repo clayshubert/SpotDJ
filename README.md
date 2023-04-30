@@ -18,19 +18,17 @@ Play the AI DJ mode playlist using Spotify playback SDK and possibly display vis
 ## Installation
 To run SpotDJ, follow these steps:
 
-Clone the repository to your local machine.
-Create a Spotify developer account and create a new app to get your client ID and client secret.
-Create a .env file in the root directory of the project and add your client ID and client secret to it in the following format:
-makefile
-Copy code
-SPOTIPY_CLIENT_ID=your_client_id_here
-SPOTIPY_CLIENT_SECRET=your_client_secret_here
-Install the required Python packages using pip:
-Copy code
-pip install -r requirements.txt
-Run the app:
-Copy code
-python app.py
+1. Clone the repository to your local machine.
+2. Create a Spotify developer account and create a new app to get your client ID and client secret.
+3. Create a .env file in the root directory of the project and add your client ID and client secret to it in the following format:
+```SPOTIPY_CLIENT_ID=your_client_id_here
+   SPOTIPY_CLIENT_SECRET=your_client_secret_here
+```
+4. Install the required Python packages using pip:
+```pip install -r requirements.txt```
+5. Run the app:
+```python spotdj.py```
+
 ## Contributing
 Contributions are welcome! If you have any suggestions for new features or improvements, please submit a pull request.
 
