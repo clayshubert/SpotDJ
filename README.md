@@ -2,19 +2,9 @@
 SpotDJ is a web app that uses AI to shuffle playlists from Spotify based on the audio statistics of each song to make the transitions between them sound seamless. It also includes an AI DJ mode that shuffles and mixes the highlights of each song to sound like a real DJ.
 
 ## Features
-Simple shuffle a selected playlist:
-Use Spotify Web API to authenticate and get access to a user's playlists.
-Allow the user to select a playlist they want to shuffle.
-Use the Spotify Web API to get the list of tracks in the playlist and shuffle them randomly.
-Play the shuffled playlist using Spotify playback SDK.
-Use AI to shuffle the playlist based on the audio statistics to make the transitions sound seamless:
-Use a Python library like Librosa or TensorFlow to extract audio features like tempo, key, and energy from each song in the playlist.
-Use a machine learning algorithm like k-nearest neighbors or a neural network to predict the best order for the songs based on their audio features to create seamless transitions.
-Play the shuffled and AI-enhanced playlist using Spotify playback SDK.
-AI DJ mode that shuffles the songs and mixes the highlights of each song to sound like a real DJ:
-Use the same audio feature extraction and machine learning algorithms as in feature 2 to predict the best order for the songs in the playlist.
-Use another machine learning algorithm like a Markov chain or a reinforcement learning agent to select and mix the highlights of each song in real-time to sound like a real DJ.
-Play the AI DJ mode playlist using Spotify playback SDK and possibly display visualizations of the transitions and mixing on a web interface.
+Simple Shuffle: Randomly shuffle the songs in the playlist.
+AI Shuffle: Use AI to shuffle the playlist based on the audio statistics to create seamless transitions between songs.
+AI DJ Mode: Use AI to select and mix the highlights of each song in real-time to sound like a professional DJ.
 ## Installation
 To run SpotDJ, follow these steps:
 
