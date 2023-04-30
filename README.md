@@ -21,8 +21,10 @@ To run SpotDJ, follow these steps:
 1. Clone the repository to your local machine.
 2. Create a Spotify developer account and create a new app to get your client ID and client secret.
 3. Create a .env file in the root directory of the project and add your client ID and client secret to it in the following format:
-            ```SPOTIPY_CLIENT_ID=your_client_id_here
-               SPOTIPY_CLIENT_SECRET=your_client_secret_here```
+~~~
+SPOTIPY_CLIENT_ID=your_client_id_here
+SPOTIPY_CLIENT_SECRET=your_client_secret_here 
+~~~
 4. Install the required Python packages using pip:
 ```pip install -r requirements.txt```
 5. Run the app:
