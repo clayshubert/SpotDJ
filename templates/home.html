@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DJSpot Dashboard</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>DJSpot</h1>
+		<nav>
+			<ul>
+				<li><a href="{{ url_for('shuffle') }}">Simple Shuffle</a></li>
+				<li><a href="{{ url_for('smartmix')}}">AI Shuffle</a></li>
+				<li><a href="{{ url_for('aidj')}}">AI DJ Mode</a></li>
+			</ul>
+		</nav>
+	</header>
+	<footer>
+		<p>© 2023 DJSpot. All rights reserved.</p>
+	</footer>
+	<script src="script.js"></script>
+</body>
+</html>

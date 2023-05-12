@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="../static/style.css">
-    <title>Playback</title>
+    <title>Simple Shuffle</title>
   </head>
   <body>
     <h1>Choose a Device and Playlist</h1>
@@ -19,27 +19,55 @@
         {% endfor %}
       </select>
       <br><br>
-      <input type="submit" value="Shuffle and Play">
+      <input type="submit" value="Shuffle">
     </form>
-  
-    <br>
 
-    {% if current_track %}
-    <h3>Currently Playing:</h3>
-    <p>{{ current_track['name'] }} by {{ current_track['artists'][0]['name'] }}</p>
-    <img src="{{ current_track['album']['images'][0]['url'] }}" alt="{{ current_track['name'] }} album cover" width="150">
+    {% if shuffled_tracks %}
+    <h3>Shuffled Playlist:</h3>
+    <ul>
+      {% for track in shuffled_tracks %}
+      <li>{{ track['name'] }} by {{ track['artists'][0]['name'] }}</li>
+      {% endfor %}
+    </ul>
     {% endif %}
+  </body>
+</html>
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <title>Simple Shuffle</title>
+  </head>
+  <body>
+    <h1>Simple Shuffle</h1>
+    <div class="form-container">
+      <h1>Choose a Device and Playlist</h1>
+      <form action="/shuffle" method="post">
+        <select name="device_name">
+          {% for device in devices %}
+          <option value="{{ device }}">{{ device }}</option>
+          {% endfor %}
+        </select>
+        <br><br>
+        <select name="playlist_id">
+          {% for playlist in playlists["items"] %}
+          <option value="{{ playlist["id"] }}">{{ playlist["name"] }}</option>
+          {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="Shuffle">
+      </form>
 
-    <form action="/playback/play" method="post">
-      <input type="submit" value="Play">
-    </form>
-
-    <form action="/playback/pause" method="post">
-      <input type="submit" value="Pause">
-    </form>
-
-    <form action="/playback/skip" method="post">
-      <input type="submit" value="Skip">
-    </form>
+      {% if shuffled_tracks %}
+      <h3>Shuffled Playlist:</h3>
+      <ul>
+        {% for track in shuffled_tracks %}
+        <li>{{ track['name'] }} by {{ track['artists'][0]['name'] }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    <a href="/" class="back-button">Back</a>
   </body>
 </html>
