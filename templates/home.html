@@ -1,0 +1,26 @@
+<body tabindex="-1">
+    <header>
+      <h1>SpotDJ</h1>
+    </header>
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li class="dropdown">
+          <!-- aria-expanded needs managed with Javascript -->
+          <button type="button" class="dropdown__title" aria-expanded="false" aria-controls="options-dropdown">
+            Play
+          </button>
+          <ul class="dropdown__menu" id="sweets-dropdown">
+            <li><a href="/shuffle">Simple Shuffle</a></li>
+            <li><a href="/songoftheweek">Song of the Week</a></li>
+            <li><a href="/smartmix">Smart Mix</a></li>
+            <li><a href="/aidj">AI DJ</a></li>
+          </ul>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <footer>
+        <p>&copy; SpotDJ 2023</p>
+    </footer>
+</body>

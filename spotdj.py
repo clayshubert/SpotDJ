@@ -2,6 +2,7 @@ import os
 import random
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy.util as util
 import numpy as np
 
@@ -20,17 +21,52 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    return render_template("index2.html")
+
+@app.route("/home")
+def home():
     # authenticate with Spotify API
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
-                                               client_secret=client_secret,
-                                               redirect_uri=redirect_uri,
-                                               scope=["user-library-read", "playlist-read-private"]))
+    sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 
-    # get user's playlists
-    playlists = sp.current_user_playlists()
+    #Pull user data
+    #user_name = user["display_name"]
+    #user_image = user["images"][0]["url"]
 
-    return render_template("index.html", playlists=playlists)
+    return render_template("home.html")
 
+@app.route("/songoftheweek")
+def get_song_of_the_week():
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+        client_id=client_id,
+        client_secret=client_secret,
+        redirect_uri=redirect_uri,
+        scope=["user-library-read", "user-top-read", "playlist-read-private", "user-read-playback-state", "user-modify-playback-state"]
+    ))
+    # Fetch top played tracks from the user's library
+    top_tracks = sp.current_user_top_tracks(limit=25)['items']
+    
+    # Fetch tracks from user's playlists
+    playlists = sp.current_user_playlists(limit=25)['items']
+    playlist_tracks = []
+    for playlist in playlists:
+        tracks = sp.playlist_tracks(playlist['id'])['items']
+        playlist_tracks.extend([track['track'] for track in tracks])
+    
+    # Combine top tracks and playlist tracks
+    all_tracks = top_tracks + playlist_tracks
+    
+    # Get audio features to determine mood
+    track_ids = [track['id'] for track in all_tracks]
+    audio_features = sp.audio_features(track_ids)
+    
+    # Filter tracks based on mood (e.g., valence > 0.5 for positive mood)
+    positive_mood_tracks = [track for track, feature in zip(all_tracks, audio_features) if feature['valence'] > 0.5]
+    
+    # Randomly select a song
+    song_of_the_week = random.choice(positive_mood_tracks)
+    
+    return song_of_the_week['name'], song_of_the_week['artists'][0]['name']
+     
 @app.route("/shuffle", methods=["POST"])
 def shuffle():
     # authenticate with Spotify API
